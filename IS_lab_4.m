@@ -3,7 +3,6 @@ clear
 clc
 
 pozymiai_tinklo_mokymui = pozymiai_raidems_atpazinti('raides.jpg',8);
-
 %% Atpaþintuvo kûrimas
 %% Development of character recognizer
 % poþymiai ið celiø masyvo perkeliami á matricà
@@ -60,7 +59,6 @@ end
 disp(atsakymas)
 figure(7), text(0.1,0.5,atsakymas,'FontSize',38)
 
-
 %% Extract features of the test image
 pavadinimas = 'zodis1.jpg';
 pozymiai_patikrai = pozymiai_raidems_atpazinti(pavadinimas, 1);
@@ -107,8 +105,6 @@ end
 % pateikime rezultatà komandiniame lange
 % disp(atsakymas)
 figure(8), text(0.1,0.5,atsakymas,'FontSize',38), axis off
-
-
 
 %% extract features for next/another test image
 pavadinimas = 'zodis2.jpg';
@@ -194,8 +190,6 @@ end
 % disp(atsakymas)
 figure(10), text(0.1,0.5,atsakymas,'FontSize',38), axis off
 
-
-
 %% extract features for next/another test image
 pavadinimas = 'zodis4.jpg';
 pozymiai_patikrai = pozymiai_raidems_atpazinti(pavadinimas, 1);
@@ -237,4 +231,3 @@ end
 % pateikime rezultatà komandiniame lange
 % disp(atsakymas)
 figure(11), text(0.1,0.5,atsakymas,'FontSize',38), axis off
-
