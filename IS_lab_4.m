@@ -14,12 +14,12 @@ P = cell2mat(pozymiai_tinklo_mokymui);
 T = [eye(9), eye(9), eye(9), eye(9), eye(9), eye(9), eye(9), eye(9)];
 % sukuriamas SBF tinklas duotiems P ir T sàryðiams
 % create an RBF network for classification with 13 neurons, and sigma = 1
-tinklas = newrb(P,T,0,1,10);
+tinklas = newrb(P,T,0,1,8);
 
 %% Tinklo patikra | Test of the network (recognizer)
 % skaièiuojamas tinklo iðëjimas neþinomiems poþymiams
 % estimate output of the network for unknown symbols (row, that were not used during training)
-P2 = P(:,12:22);
+P2 = P(:,16:24);
 Y2 = sim(tinklas, P2);
 % ieðkoma, kuriame iðëjime gauta didþiausia reikðmë
 % find which neural network output gives maximum value
@@ -58,7 +58,7 @@ end
 % pateikime rezultatà komandiniame lange
 % show the result in command window
 disp(atsakymas)
-% % figure(7), text(0.1,0.5,atsakymas,'FontSize',38)
+figure(7), text(0.1,0.5,atsakymas,'FontSize',38)
 
 
 %% Extract features of the test image
@@ -192,5 +192,49 @@ for k = 1:raidziu_sk
 end
 % pateikime rezultatà komandiniame lange
 % disp(atsakymas)
-figure(9), text(0.1,0.5,atsakymas,'FontSize',38), axis off
+figure(10), text(0.1,0.5,atsakymas,'FontSize',38), axis off
+
+
+
+%% extract features for next/another test image
+pavadinimas = 'zodis4.jpg';
+pozymiai_patikrai = pozymiai_raidems_atpazinti(pavadinimas, 1);
+
+%% Raidþiø atpaþinimas
+% poþymiai ið celiø masyvo perkeliami á matricà
+P2 = cell2mat(pozymiai_patikrai);
+% skaièiuojamas tinklo iðëjimas neþinomiems poþymiams
+Y2 = sim(tinklas, P2);
+% ieðkoma, kuriame iðëjime gauta didþiausia reikðmë
+[a2, b2] = max(Y2);
+%% Rezultato atvaizdavimas
+% apskaièiuosime raidþiø skaièiø - poþymiø P2 stulpeliø skaièiø
+raidziu_sk = size(P2,2);
+% rezultatà saugosime kintamajame 'atsakymas'
+atsakymas = [];
+for k = 1:raidziu_sk
+    switch b2(k)
+        case 1
+            atsakymas = [atsakymas, 'A'];
+        case 2
+            atsakymas = [atsakymas, 'B'];
+        case 3
+            atsakymas = [atsakymas, 'C'];
+        case 4
+            atsakymas = [atsakymas, 'D'];
+        case 5
+            atsakymas = [atsakymas, 'E'];
+        case 6
+            atsakymas = [atsakymas, 'F'];
+        case 7
+            atsakymas = [atsakymas, 'G'];
+        case 8
+            atsakymas = [atsakymas, 'H'];
+        case 9
+            atsakymas = [atsakymas, 'I'];
+    end
+end
+% pateikime rezultatà komandiniame lange
+% disp(atsakymas)
+figure(11), text(0.1,0.5,atsakymas,'FontSize',38), axis off
 
